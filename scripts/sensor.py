@@ -13,9 +13,11 @@ io.setmode(io.BCM)
 
 ## enter the number of whatever GPIO pin you're using
 door_pin = 23
+buzz_pin = 22
 
 ## use the built-in pull-up resistor
 io.setup(door_pin, io.IN, pull_up_down=io.PUD_UP)  # activate input with PullUp
+
 
 ## initialize door 
 door=0
@@ -27,8 +29,10 @@ while True:
 		print("Door Open") # stream a message saying "Open"
 ##		logger.flush() # send the message immediately
 		door=0 # set door to its initial value
+		io.setup(buzz_pin,io.OUT)
 		time.sleep(1) # wait 1 second before the next action
 	## if the switch is closed and door does not equal 1
 	if (io.input(door_pin)==False and door!=1):
 		print("Door Close") # stream a message saying "Close"
+		
 		door=1 # set door so that this loop won't act again until the switch has been opened
