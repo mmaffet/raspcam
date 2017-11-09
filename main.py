@@ -9,6 +9,7 @@ from flask.ext.jsonpify import jsonify
 from flask.ext.cors import CORS
 
 import estado
+import sensor
 
 db_connect = create_engine('sqlite:///chinook.db')
 app = Flask(__name__)
@@ -67,7 +68,7 @@ class Desactivar(Resource):
 
 class Armar(Resource):
     def get(self):
-        conn = db_connect.connect()
+        sensor.init()
         return 1
         
 
