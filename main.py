@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 from json import dumps
 from flask.ext.jsonpify import jsonify
 from flask.ext.cors import CORS
-from thread import start_new_thread
+from threading import Thread
 
 import estado
 import sensor
@@ -69,7 +69,9 @@ class Desactivar(Resource):
 
 class Armar(Resource):
     def get(self):
-        return start_new_thread(sensor.init())
+        t = Thread(target=sensor.init(), args=())
+        return 1
+
         
 
 api.add_resource(Employees, '/employees') # Route_1
