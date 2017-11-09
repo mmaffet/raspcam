@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 from json import dumps
 from flask.ext.jsonpify import jsonify
 from flask.ext.cors import CORS
-import threading
+from thread import start_new_thread
 
 import estado
 import sensor
