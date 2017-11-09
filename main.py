@@ -69,11 +69,7 @@ class Desactivar(Resource):
 
 class Armar(Resource):
     def get(self):
-        threads = []
-        t = threading.Thread(target=sensor.init())
-        threads.append(t)
-        t.start()
-        return 1
+        return start_new_thread(sensor.init())
         
 
 api.add_resource(Employees, '/employees') # Route_1
