@@ -8,6 +8,8 @@ from json import dumps
 from flask.ext.jsonpify import jsonify
 from flask.ext.cors import CORS
 
+import estado
+
 db_connect = create_engine('sqlite:///chinook.db')
 app = Flask(__name__)
 api = Api(app)
@@ -54,7 +56,8 @@ class Status(Resource):
         base = 0
         if conn:
         	base = 1
-        result = {'estado': 1, 'base_de_datos': base, 'sensores': 0, 'alarma': 0, 'video': 1}
+        estado = estado()
+        result = {'estado': 1, 'base_de_datos': base, 'sensores': estado, 'alarma': 0, 'video': 1}
         return jsonify(result)
 
 class Desactivar(Resource):
@@ -80,4 +83,5 @@ api.add_resource(Armar, '/armar') # Arma/Desarma la alarma
 
 
 if __name__ == '__main__':
-     app.run(host= 'camarapat-01.ddns.net',port='5002')
+     #app.run(host= '127.0.0.1',port='5002')
+     app.run(host= '192.168.0.16',port='5002')
