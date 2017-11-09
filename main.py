@@ -63,7 +63,7 @@ class Status(Resource):
 
 class Desactivar(Resource):
     def get(self):
-        call("python desactivar.py&", shell=True)
+        call("python desarmar.py&", shell=True)
         return 1
 
 class Armar(Resource):
