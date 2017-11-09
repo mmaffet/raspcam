@@ -27,13 +27,13 @@ def init():
 	while True:
 		## if the switch is open
 		if io.input(door_pin):
-			print("Door Open") # stream a message saying "Open"
+			#print("Door Open") # stream a message saying "Open"
 	##		logger.flush() # send the message immediately
 			door=0 # set door to its initial value
 			io.setup(buzz_pin,io.OUT)
 			time.sleep(1) # wait 1 second before the next action
 		## if the switch is closed and door does not equal 1
 		if (io.input(door_pin)==False and door!=1):
-			print("Door Close") # stream a message saying "Close"
+			#print("Door Close") # stream a message saying "Close"
 			
 			door=1 # set door so that this loop won't act again until the switch has been opened
