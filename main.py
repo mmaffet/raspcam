@@ -56,8 +56,8 @@ class Status(Resource):
         base = 0
         if conn:
         	base = 1
-        estado = estado.estado()
-        result = {'estado': 1, 'base_de_datos': base, 'sensores': estado, 'alarma': 0, 'video': 1}
+        sensor = estado()
+        result = {'estado': 1, 'base_de_datos': base, 'sensores': sensor, 'alarma': 0, 'video': 1}
         return jsonify(result)
 
 class Desactivar(Resource):

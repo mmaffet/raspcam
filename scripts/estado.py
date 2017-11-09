@@ -10,7 +10,6 @@ def estado():
     if (io.input(door_pin)==False):
         #Puerta Cerrada
         return False
-estado()
     
         
 
