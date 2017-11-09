@@ -29,6 +29,7 @@ def armar():
         ## if the switch is open
         if io.input(door_pin):
             #print("Door Open") # stream a message saying "Open"
+            exit()
         ##logger.flush() # send the message immediately
             door=0 # set door to its initial value
             io.output(buzz_pin,io.HIGH)
