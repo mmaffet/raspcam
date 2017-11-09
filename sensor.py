@@ -37,3 +37,4 @@ def init():
 			#print("Door Close") # stream a message saying "Close"
 			
 			door=1 # set door so that this loop won't act again until the switch has been opened
+init()
