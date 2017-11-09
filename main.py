@@ -80,4 +80,4 @@ api.add_resource(Armar, '/armar') # Arma/Desarma la alarma
 
 
 if __name__ == '__main__':
-     app.run(port='5002')
+     app.run(host= 'camarapat-01.ddns.net',port='5002')
