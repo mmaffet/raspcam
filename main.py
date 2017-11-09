@@ -56,7 +56,7 @@ class Status(Resource):
         base = 0
         if conn:
         	base = 1
-        estado = estado()
+        estado = estado.estado()
         result = {'estado': 1, 'base_de_datos': base, 'sensores': estado, 'alarma': 0, 'video': 1}
         return jsonify(result)
 
