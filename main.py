@@ -10,7 +10,6 @@ from flask.ext.cors import CORS
 from subprocess import call
 
 import estado
-import sensor
 
 db_connect = create_engine('sqlite:///chinook.db')
 app = Flask(__name__)
