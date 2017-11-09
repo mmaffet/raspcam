@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 from json import dumps
 from flask.ext.jsonpify import jsonify
 from flask.ext.cors import CORS
-from threading import Thread
+from subprocess import call
 
 import estado
 import sensor
@@ -64,12 +64,12 @@ class Status(Resource):
 
 class Desactivar(Resource):
     def get(self):
-        conn = db_connect.connect()
+        call(["python desactivar.py&"])
         return 1
 
 class Armar(Resource):
     def get(self):
-        t = Thread(target=sensor.init(), args=())
+        call(["python sensor.py&"])
         return 1
 
         
