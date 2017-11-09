@@ -1,12 +1,17 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from flask import Flask, request
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine
 from json import dumps
 from flask.ext.jsonpify import jsonify
+from flask.ext.cors import CORS
 
 db_connect = create_engine('sqlite:///chinook.db')
 app = Flask(__name__)
 api = Api(app)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 #Ejemplo de https://www.codementor.io/sagaragarwal94/building-a-basic-restful-api-in-python-58k02xsiq
 #referencia virtualenv http://docs.python-guide.org/en/latest/dev/virtualenvs/
@@ -33,6 +38,16 @@ class Employees_Name(Resource):
 
 #Ruta Status actual
 
+class Ping(Resource):
+    def get(self):
+        return 1
+
+class Init(Resource):
+    def get(self, ip, password):
+        conn = db_connect.connect()
+        return 1
+
+
 class Status(Resource):
     def get(self):
         conn = db_connect.connect()
@@ -41,13 +56,27 @@ class Status(Resource):
         	base = 1
         result = {'estado': 1, 'base_de_datos': base, 'sensores': 0, 'alarma': 0, 'video': 1}
         return jsonify(result)
+
+class Desactivar(Resource):
+    def get(self):
+        conn = db_connect.connect()
+        return 1
+
+class Armar(Resource):
+    def get(self):
+        conn = db_connect.connect()
+        return 1
         
 
 api.add_resource(Employees, '/employees') # Route_1
 api.add_resource(Tracks, '/tracks') # Route_2
 api.add_resource(Employees_Name, '/employees/<employee_id>') # Route_3
 
+api.add_resource(Ping, '/') # Just ping
+api.add_resource(Init, '/init/<ip>/<password>') # Inicializa el login (requiere ip (varchar) y password e md5)
 api.add_resource(Status, '/status') # Status actual del dispositivo
+api.add_resource(Desactivar, '/desactivar') # Desactiva la alarma sonora, grabación (desactivar.py)
+api.add_resource(Armar, '/armar') # Arma/Desarma la alarma
 
 
 if __name__ == '__main__':
